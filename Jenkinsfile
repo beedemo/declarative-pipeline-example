@@ -11,7 +11,7 @@ pipeline {
             sh 'mvn install'
             
           },
-          "": {
+          "error": {
             slackSend 'Hello'
             
           }
