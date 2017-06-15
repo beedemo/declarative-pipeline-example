@@ -31,5 +31,15 @@ pipeline {
         echo 'release'
       }
     }
+    stage('Configure') {
+      steps {
+        echo 'configure'
+      }
+    }
+    stage('Deploy') {
+      steps {
+        echo 'deploy'
+      }
+    }
   }
 }
