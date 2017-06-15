@@ -5,20 +5,20 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        parallel(
-          "build": {
-            sh 'mvn --version'
-            sh 'mvn install'
-          },
-          "error": {
-            slackSend 'build error'
-          }
-        )
+        echo 'build'
       }
     }
     stage('Test') {
       steps {
-        echo 'test'
+        
+        parallel(
+          "integration": {
+            echo 'integration tests'
+          },
+          "performance": {
+            echo 'performance tests'
+          }
+        )
       }
     }
     stage('Package') {
