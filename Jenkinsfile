@@ -3,19 +3,32 @@ pipeline {
     docker 'maven:3.3.3'
   }
   stages {
-    stage('build') {
+    stage('Build') {
       steps {
         parallel(
           "build": {
             sh 'mvn --version'
             sh 'mvn install'
-            
           },
           "error": {
-            slackSend 'Hello'
-            
+            slackSend 'build error'
           }
         )
+      }
+    }
+    stage('Test') {
+      steps {
+        echo 'test'
+      }
+    }
+    stage('Package') {
+      steps {
+        echo 'package'
+      }
+    }
+    stage('Release') {
+      steps {
+        echo 'release'
       }
     }
   }
